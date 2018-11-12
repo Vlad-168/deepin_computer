@@ -1,0 +1,10 @@
+Almaz 0 1 3 0 5 0 1 2 1 0
+Saturn 2 0 1 5 2 3 1 0 2 0
+Meteor 1 0 0 0 1 2 4 3 0 1
+Steklozavod 3 0 1 0 0 1 2 5 2 1
+Dinamo 5 2 1 1 0 0 3 0 1 2
+Torpedo 1 0 0 3 2 0 1 2 0 1
+Enisey 3 2 1 0 1 0 0 1 2 3
+Avangard 1 0 2 3 1 0 0 0 1 3
+Selyanochka 3 0 2 1 0 1 0 1 0 1
+Entuziast 3 6 1 2 0 1 2 1 0 0

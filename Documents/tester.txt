@@ -1,0 +1,52 @@
+#include "mainwindow.h"
+#include <QApplication>
+#include <QSplashScreen>
+#include <QPainter>
+#include <QTime>
+#include <QPrinter>
+#include <QPrintDialog>
+
+static const int LOAD_TIME_MSEC = 10 * 1000;
+
+static const int PROGRESS_X_PX = 10;
+static const int PROGRESS_Y_PX = 170;
+static const int PROGRESS_WIDTH_PX = 620;
+static const int PROGRESS_HEIGHT_PX = 28;
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    QPixmap pix( ":/images_forloading/asl.jpg" );
+        QSplashScreen splashScreen( pix );
+        splashScreen.show();
+        a.processEvents();
+
+        QTime time;
+        time.start();
+        while( time.elapsed() < LOAD_TIME_MSEC ) {
+            const int progress = static_cast< double >( time.elapsed() ) / LOAD_TIME_MSEC * 100.0;
+            splashScreen.showMessage(
+                QObject::trUtf8( "Загружено: %1%" ).arg( progress ),
+                Qt::AlignBottom | Qt::AlignRight
+            );
+
+            QPainter painter;
+            painter.begin( &pix );
+
+            painter.fillRect(
+                PROGRESS_X_PX,
+                PROGRESS_Y_PX,
+                progress / 100.0 * PROGRESS_WIDTH_PX,
+                PROGRESS_HEIGHT_PX, Qt::green
+            );
+
+            painter.end();
+
+            splashScreen.setPixmap( pix );
+            a.processEvents();
+        }
+    MainWindow w;
+
+    w.showFullScreen();
+    splashScreen.finish( &w );
+    return a.exec();
+}

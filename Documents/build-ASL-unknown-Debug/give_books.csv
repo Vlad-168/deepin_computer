@@ -1,0 +1,29 @@
+RastStorageModel:new_book;title:new_added_books;searchCols:;updateCols:;boolCols:
+ auto search = new StorageModel("./give_books.csv");
+    search->setObjectName("give_books");
+    search->setTitle("give books to pupils");
+    QStringList headers = {"Student ID", "BookID"};
+    search->setHeaderData(headers);
+
+    
+
+    QDialog dialog(this);
+    dialog.setObjectName("StorageDemoDialog");
+    dialog.setWindowTitle(tr("DemoDialog"));
+    dialog.setSizeGripEnabled(true);
+    auto priceView = new QTableView(&dialog);
+    priceView->setModel(search);
+
+    auto buttons = new QDialogButtonBox(QDialogButtonBox::Ok, &dialog);
+    connect(buttons, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
+    connect(buttons, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
+
+    auto layout = new QVBoxLayout(&dialog);
+    layout->addWidget(priceView);
+    layout->addWidget(buttons);
+    dialog.setLayout(layout);
+    dialog.showFullScreen();
+   //ui->label->setText("Книга успешно добавлена."+books->data(row,6));
+    dialog.exec();
+   //ui->label->setText("Артикул : "+QString::number(books->rowCount()));
+       //accept();
